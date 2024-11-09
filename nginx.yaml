@@ -1,0 +1,33 @@
+---
+- name: Nginx Configuration
+  hosts: default
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Ensure nginx is installed
+      package:
+        name: nginx
+        update_cache: true
+
+    - name: Ensure git is installed
+      package:
+        name: git
+
+    - name: Enable service nginx
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+
+    - name: Manage nginx config template
+      template:
+        src: nginx.conf
+        dest: "/etc/nginx/nginx.conf"
+        mode: "0644"
+
+    - name: Clone App
+      ansible.builtin.git:
+        repo: "https://github.com/Doupix/plouf.git"
+        dest: "/var/www/html/plouf/"
+        single_branch: yes
+        version: main
