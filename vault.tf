@@ -45,6 +45,6 @@ resource "azurerm_key_vault" "main" {
 
 resource "azurerm_key_vault_secret" "rootpasswd" {
   name         = "passwd"
-  value        = random_string.passwd
+  value        = random_string.passwd.result
   key_vault_id = azurerm_key_vault.main.id
 }

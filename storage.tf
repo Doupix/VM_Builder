@@ -1,6 +1,6 @@
 
 resource "azurerm_storage_account" "terraform" {
-  name                     = "storagehzvtevxyevcxyezjvz"
+  name                     = "storagehzvtevxyevcxyez"
   resource_group_name      = azurerm_resource_group.vmbuilder.name
   location                 = azurerm_resource_group.vmbuilder.location
   account_tier             = "Standard"
